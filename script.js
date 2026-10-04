@@ -1,6 +1,25 @@
 /* =========================================================
    script.js — 齐胜龙个人简历 交互逻辑
    ========================================================= */
+// 证书内联浮窗控制函数
+        function toggleCertPreview(certId, imgUrl, titleText) {
+            const panel = document.getElementById('cert-floating-panel');
+            const panelImg = document.getElementById('cert-panel-img');
+            const panelTitle = document.getElementById('cert-panel-title');
+            
+            panelTitle.textContent = titleText;
+            panelImg.src = imgUrl;
+            panel.classList.remove('hidden');
+            
+            // 平滑滚动到浮窗位置
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function closeCertPreview() {
+            const panel = document.getElementById('cert-floating-panel');
+            panel.classList.add('hidden');
+        }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     /* =====================================================
