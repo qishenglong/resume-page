@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>齐胜龙 | 高级系统架构设计师 · 部门经理</title>
+
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0369a1',       // Sky 700
+                        primaryHover: '#0284c7',  // Sky 600
+                        darkBg: '#0f172a',        // Slate 900
+                        darkCard: '#1e293b',      // Slate 800
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-darkBg dark:text-slate-200">
+
+    <!-- 背景装饰图纹 -->
+    <div class="fixed inset-0 z-[-1] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-70"></div>
+
+    <!-- 主题切换按钮 -->
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-slate-800 shadow-md border border-slate-200 dark:border-slate-700 hover:scale-110 transition-transform focus:outline-none" aria-label="切换深色模式">
+        <i id="theme-icon" class="fa-solid fa-moon text-slate-700 dark:text-yellow-400 text-lg w-6 h-6 flex items-center justify-center"></i>
+    </button>
+
+    <main class="container mx-auto px-4 py-8 md:py-12 max-w-[1400px]">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+
+            <!-- ================= 左侧固定栏（个人信息与核心资质） ================= -->
+            <aside class="lg:col-span-3 space-y-6">
+                <div class="lg:sticky lg:top-8 space-y-6">
+
+                    <!-- 个人名片 -->
+                    <div class="bento-card text-center pt-8">
+                        <div class="card-accent"></div>
+                        <img src="https://placehold.co/200x200/0369a1/ffffff?text=QSL" alt="齐胜龙头像" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-white dark:border-slate-700 shadow-md mb-4">
+                        <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">齐胜龙</h1>
+                        <p class="text-sm font-medium text-primary dark:text-sky-400 mb-4">中科软部门经理 · 高级系统架构设计师</p>
+
+                        <div class="flex flex-wrap justify-center gap-2 mb-6">
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700/50 text-xs rounded text-slate-600 dark:text-slate-300">1984.09</span>
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700/50 text-xs rounded text-slate-600 dark:text-slate-300">中共党员</span>
+                            <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700/50 text-xs rounded text-slate-600 dark:text-slate-300">硕士 (北邮)</span>
+                        </div>
+
+                        <div class="space-y-3 text-sm text-slate-600 dark:text-slate-400 text-left bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-phone w-4 text-center text-primary"></i>
+                                <span>13810715293</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-envelope w-4 text-center text-primary"></i>
+                                <a href="mailto:qshl2002@163.com" class="hover:text-primary transition">qshl2002@163.com</a>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-location-dot w-4 text-center text-primary"></i>
+                                <span>北京西城 (户籍) / 江西余干 (籍贯)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-link w-4 text-center text-primary"></i>
+                                <a href="https://www.credly.com/users/filon51/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition underline underline-offset-2">Credly 认证徽章</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 顶级资质认证 -->
+                    <div class="bento-card">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider flex items-center justify-between">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-award text-primary"></i> 顶级资质认证</span>
+                            <span class="text-[10px] text-slate-400 font-normal">点击查阅证书</span>
+                        </h3>
+                        <ul class="space-y-3.5">
+
+                            <!-- 1. 软考高级系统架构设计师证书 -->
+                            <li class="flex items-start justify-between gap-2 group">
+                                <div class="flex items-start gap-2.5">
+                                    <div class="w-7 h-7 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-sitemap text-primary dark:text-sky-400 text-xs"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">软考高级系统架构设计师</p>
+                                        <p class="text-[11px] text-slate-500">全国软考高级职称 (2022)</p>
+                                    </div>
+                                </div>
+                                <a href="./assets/certs/architect.png" target="_blank" rel="noopener noreferrer" title="查看架构师证书" class="text-slate-400 hover:text-primary dark:hover:text-sky-400 p-1 text-xs transition-colors shrink-0">
+                                    <i class="fa-solid fa-image"></i>
+                                </a>
+                            </li>
+
+                            <!-- 2. ITIL 认证证书 -->
+                            <li class="flex items-start justify-between gap-2 group">
+                                <div class="flex items-start gap-2.5">
+                                    <div class="w-7 h-7 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-list-check text-primary dark:text-sky-400 text-xs"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">ITIL 认证证书</p>
+                                        <p class="text-[11px] text-slate-500">IT 服务管理认证</p>
+                                    </div>
+                                </div>
+                                <a href="./assets/certs/itil.png" target="_blank" rel="noopener noreferrer" title="查看ITIL证书" class="text-slate-400 hover:text-primary dark:hover:text-sky-400 p-1 text-xs transition-colors shrink-0">
+                                    <i class="fa-solid fa-image"></i>
+                                </a>
+                            </li>
+
+                            <!-- 3. 中科院高级工程师 -->
+                            <li class="flex items-start justify-between gap-2 group">
+                                <div class="flex items-start gap-2.5">
+                                    <div class="w-7 h-7 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-medal text-primary dark:text-sky-400 text-xs"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">中科院高级工程师</p>
+                                        <p class="text-[11px] text-slate-500">中国科学院评定</p>
+                                    </div>
+                                </div>
+                                <a href="./assets/certs/cas_senior.png" target="_blank" rel="noopener noreferrer" title="查看中科院高工证书" class="text-slate-400 hover:text-primary dark:hover:text-sky-400 p-1 text-xs transition-colors shrink-0">
+                                    <i class="fa-solid fa-image"></i>
+                                </a>
+                            </li>
+
+                            <!-- 4. TOGAF 9 证书 -->
+                            <li class="flex items-start justify-between gap-2 group">
+                                <div class="flex items-start gap-2.5">
+                                    <div class="w-7 h-7 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-cubes text-primary dark:text-sky-400 text-xs"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">TOGAF 9 证书</p>
+                                        <p class="text-[11px] text-slate-500">企业架构师认证</p>
+                                    </div>
+                                </div>
+                                <a href="./assets/certs/togaf.png" target="_blank" rel="noopener noreferrer" title="查看TOGAF证书" class="text-slate-400 hover:text-primary dark:hover:text-sky-400 p-1 text-xs transition-colors shrink-0">
+                                    <i class="fa-solid fa-image"></i>
+                                </a>
+                            </li>
+
+                            <!-- 5. AWS 高级解决方案架构师 -->
+                            <li class="flex items-start justify-between gap-2 group">
+                                <div class="flex items-start gap-2.5">
+                                    <div class="w-7 h-7 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-brands fa-aws text-primary dark:text-sky-400 text-xs"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">AWS 高级架构师认证</p>
+                                        <p class="text-[11px] text-slate-500">亚马逊专业级架构师</p>
+                                    </div>
+                                </div>
+                                <a href="./assets/certs/aws_pro.png" target="_blank" rel="noopener noreferrer" title="查看AWS架构师证书" class="text-slate-400 hover:text-primary dark:hover:text-sky-400 p-1 text-xs transition-colors shrink-0">
+                                    <i class="fa-solid fa-image"></i>
+                                </a>
+                            </li>
+
+                            <!-- 6. PMP 证书 -->
+                            <li class="flex items-start justify-between gap-2 group">
+                                <div class="flex items-start gap-2.5">
+                                    <div class="w-7 h-7 rounded bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-diagram-project text-primary dark:text-sky-400 text-xs"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">项目管理 PMP 证书</p>
+                                        <p class="text-[11px] text-slate-500">项目管理专业人士</p>
+                                    </div>
+                                </div>
+                                <a href="./assets/certs/pmp.png" target="_blank" rel="noopener noreferrer" title="查看PMP证书" class="text-slate-400 hover:text-primary dark:hover:text-sky-400 p-1 text-xs transition-colors shrink-0">
+                                    <i class="fa-solid fa-image"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- 教育背景 -->
+                    <div class="bento-card">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-primary"></i> 教育背景
+                        </h3>
+                        <div class="space-y-3 relative border-l-2 border-slate-200 dark:border-slate-700 ml-2 pl-4">
+                            <div class="relative">
+                                <div class="absolute -left-[1.3rem] top-1.5 w-2 h-2 bg-primary rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">北京邮电大学</h4>
+                                <p class="text-xs text-slate-500">软件工程 · 硕士 (2013)</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[1.3rem] top-1.5 w-2 h-2 bg-slate-400 rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">太原理工大学</h4>
+                                <p class="text-xs text-slate-500">数学与应用数学 · 学士 (2005)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- ================= 右侧滚动栏（详情与履历） ================= -->
+            <div class="lg:col-span-9 space-y-6">
+
+                <!-- 核心优势 / 简介 -->
+                <section class="bento-card">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-yellow-500"></i> 核心优势与评价
+                    </h2>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                        拥有近 20 年保险核心系统深耕经验，自 2005 年起从事软件系统设计开发，2007 年加入中科软，项目覆盖国内外数十家险企。踏实勤奋、富于创新，在承受极高技术与业务压力时表现优异。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-2">数据迁移与系统转型</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">主导完成 LIS6 到 LIS7、VLIFE 到 LIS、COBOL 转 JAVA (C2J) 等核心升级与异构数据迁移，自研专利级数据迁移工具，保障业务平滑切换。</p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-2">核心建设与架构优化</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">深度参与承保、理赔、再保等核心模块全生命周期设计。多次主导核心加固、DB/WAS 性能宕机调优及互联网云核心架构演进（Spring Cloud 微服务）。</p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                            <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-2">监管对接与数据平台</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">长期承接中保信、银保监会等机构的监管集市、大数据平台项目。精通数据标准、ODS-DWS 建模、ETL 链路及指标体系建设端到端交付。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 技术栈矩阵 -->
+                <section class="bento-card">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">核心技术栈</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200 rounded-lg dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">Spring Boot / Spring Cloud</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200 rounded-lg dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800">Dubbo / Zookeeper</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">Oracle / DB2 / MySQL / GaussDB</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800">数据库调优 / 宕机分析</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-purple-50 text-purple-700 border border-purple-200 rounded-lg dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800">EBAO / LIS / MIS 模型</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-orange-50 text-orange-700 border border-orange-200 rounded-lg dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800">Kafka / RocketMQ / Redis</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-orange-50 text-orange-700 border border-orange-200 rounded-lg dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800">WebSphere / WebLogic / Tomcat</span>
+                        <span class="px-3 py-1.5 text-xs font-medium bg-gray-100 text-gray-700 border border-gray-300 rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700">Kettle / GoldenGate / ETL</span>
+                    </div>
+                </section>
+
+                <!-- 职业进阶历程 -->
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="bento-card md:col-span-1">
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">中科软任职历程</h2>
+                        <div class="relative border-l border-slate-200 dark:border-slate-700 ml-2 space-y-4 pl-4 pr-2">
+                            <div class="relative">
+                                <div class="absolute -left-[1.35rem] top-1.5 w-2.5 h-2.5 bg-primary rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <span class="text-xs font-bold text-primary dark:text-sky-400">2024.04 - 至今</span>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">部门经理 <span class="text-slate-500 font-normal">| 健云事业二部</span></h4>
+                                <p class="text-xs text-slate-500 mt-1">管理超 44 人团队，年项目收益超 1175W（2025 数据）</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[1.35rem] top-1.5 w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <span class="text-xs font-bold text-slate-500">2022.04 - 2024.04</span>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">部门经理 <span class="text-slate-500 font-normal">| 健康险事业二部</span></h4>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[1.35rem] top-1.5 w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <span class="text-xs font-bold text-slate-500">2018.04 - 2022.04</span>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">副总经理 <span class="text-slate-500 font-normal">| 健康险事业部</span></h4>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[1.35rem] top-1.5 w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <span class="text-xs font-bold text-slate-500">2015.04 - 2018.04</span>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">项目经理 &amp; 总助 <span class="text-slate-500 font-normal">| 健康险事业部</span></h4>
+                            </div>
+                            <div class="relative pb-2">
+                                <div class="absolute -left-[1.35rem] top-1.5 w-2.5 h-2.5 bg-slate-300 dark:bg-slate-600 rounded-full ring-4 ring-white dark:ring-darkCard"></div>
+                                <span class="text-xs font-bold text-slate-500">2007.03 - 2015.04</span>
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">技术支持 / 技术经理 <span class="text-slate-500 font-normal">| 寿险部 / 信息服务部</span></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 业绩与荣誉 -->
+                    <div class="bento-card md:col-span-1 flex flex-col">
+                        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">管理业绩 &amp; 荣誉</h2>
+                        <div class="flex-grow space-y-4 pr-2">
+                            <div class="bg-gradient-to-r from-sky-50 to-blue-50 dark:from-slate-800 dark:to-slate-800/80 p-3 rounded-lg border border-sky-100 dark:border-slate-700">
+                                <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">团队效能持续破局</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    从 2015 年组建 3 人团队起步，至 2023 年带领团队规模达 66 人。团队历年项目收益稳健增长（2022 年达 1400W，2025 年达 1175W）。
+                                </p>
+                            </div>
+                            <div class="flex gap-3 items-start p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-700">
+                                <i class="fa-solid fa-copyright text-primary mt-0.5"></i>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">国家版权局软件著作权</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">自主研发《保险系统数据迁移软件》（软著登字第 5763684 号）</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 items-start p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-700">
+                                <i class="fa-solid fa-chalkboard-user text-primary mt-0.5"></i>
+                                <div>
+                                    <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">中科软事业群金牌讲师</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5">主讲《企业级 COBOL 系统重构之道》《WAS 宕机分析》《DB2 数据库技术》等。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- 标志性工作经历 -->
+                <section class="space-y-6">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white px-2">标志性工作经历（重点项目精选）</h2>
+
+                    <!-- 项目 1 -->
+                    <div class="bento-card">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 gap-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">中信保诚外围批处理 C2J 架构重构项目</h3>
+                            <span class="bg-primary/10 text-primary dark:text-sky-400 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">项目经理 | 2024.11</span>
+                        </div>
+                        <div class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><b>背景与目标：</b> 针对保险 AS400 平台 COBOL 遗留系统信创不足、扩展弱的痛点，主导批处理系统现代化重构（过程式 COBOL 到 SpringBoot Java 架构）。</p>
+                            <p><b>核心技术动作：</b>
+                                <br>1. 设计数据结构、语法、运行语义全套映射规则；落地自动化迁移工具链，实现 CPY / 程序文件批量转 Java 实体。
+                                <br>2. 针对分布式 IO 瓶颈实施批量提交、合并查询、内存缓存优化。
+                                <br>3. 搭建双轨并行全量数据核对 + JACOCO 覆盖率分析的闭环质量体系。
+                            </p>
+                            <p><b>成果与价值：</b> 性能大幅提升，保障业务逻辑无损，支撑系统平滑信创上线，彻底解决原主机系统人才短缺的技术债务。</p>
+                        </div>
+                    </div>
+
+                    <!-- 项目 2 -->
+                    <div class="bento-card">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 gap-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">国寿海外团险同构亿级数据迁移项目</h3>
+                            <span class="bg-primary/10 text-primary dark:text-sky-400 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">项目经理 | 2023.09</span>
+                        </div>
+                        <div class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><b>核心挑战：</b> 将系统数据库从 SQL Server 迁至 MySQL，涉及整库亿级、最大单表千万级数据，迁移窗口要求极高。</p>
+                            <p><b>技术攻坚：</b> 制定多数据源连接、多线程批量提交及全量比对策略；攻克外键约束、MySQL 关键字冲突、无主键大表、时区兼容、LONGTEXT 类型转换等多项难点。</p>
+                            <p><b>落地结果：</b> 实现 <b>4 小时内</b> 完成全量清洗、迁移与行级比对，生产环境核对通过率 <b>100%</b>。系统平稳上线，显著降低了运维成本。</p>
+                        </div>
+                    </div>
+
+                    <!-- 项目 3 -->
+                    <div class="bento-card">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 gap-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">PICC 人保健康商保核心架构升级（信创）</h3>
+                            <span class="bg-primary/10 text-primary dark:text-sky-400 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">系统架构设计师 | 2022.04</span>
+                        </div>
+                        <div class="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><b>架构设计方案：</b> 全面建成了用户、产品、客户、收付费及团险专属中心。采用基于 Spring Boot + Consul 的微服务体系，结合 Apollo 配置中心、Zuul API 网关。</p>
+                            <p><b>高可用与信创：</b> 采用分布式数据库 GaussDB 与 PGSQL 并存；部署 DNS + LVS + KeepAlived 实现高可用负载均衡；引入 Kafka / RocketMQ 实现事务解耦。</p>
+                            <p><b>可观测性建设：</b> 使用 ELK + SkyWalking 搭建完整的分布式日志追踪与全链路监控系统，结合 Prometheus 构建云原生可观测能力，支持灰度发布与两地三中心异地双活。</p>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- 交互式“参与历史项目全景库” -->
+                <section class="bento-card">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-timeline text-primary"></i> 参与历史项目全景库（项目经理全集列举）
+                            </h2>
+                            <p class="text-xs text-slate-500">收录了近 20 年职业生涯中主导担任<strong class="text-primary dark:text-sky-400">“项目经理”</strong>的核心项目全集。点击左侧时间轴可自由切换并查阅详细项目背景与成果。</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 h-[520px]">
+                        <!-- 左侧时间线列表 -->
+                        <div class="w-full md:w-5/12 h-64 md:h-full overflow-y-auto scroll-area pr-2 border-r border-slate-100 dark:border-slate-800" id="timeline-list">
+                            <!-- JS 动态渲染列表项 -->
+                        </div>
+
+                        <!-- 右侧项目详情 -->
+                        <div class="w-full md:w-7/12 h-full bg-slate-50 dark:bg-slate-800/40 rounded-xl p-6 border border-slate-100 dark:border-slate-700 overflow-y-auto scroll-area" id="project-detail-view">
+                            <!-- JS 动态渲染详情内容 -->
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="pt-8 pb-4 text-center text-sm text-slate-400 border-t border-slate-200 dark:border-slate-800">
+                    <p>Designed for Senior Architect Qi Shenglong. All rights reserved.</p>
+                </footer>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 自定义交互逻辑 -->
+    <script src="script.js"></script>
+</body>
+</html>

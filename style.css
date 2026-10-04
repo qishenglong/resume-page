@@ -1,0 +1,79 @@
+/* =========================================================
+   style.css — 齐胜龙个人简历 自定义样式
+   ========================================================= */
+
+:root {
+    --bento-radius: 1.5rem;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- 自定义滚动条 ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+/* ---------- Bento Box 卡片样式 ---------- */
+.bento-card {
+    background: #ffffff;
+    border-radius: var(--bento-radius);
+    border: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+.dark .bento-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+/* 悬停交互效果 */
+.bento-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+.dark .bento-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    border-color: #475569;
+}
+
+/* 强调线条 */
+.card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+
+/* ---------- 动画效果 ---------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
