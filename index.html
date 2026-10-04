@@ -87,6 +87,13 @@
                                 <a href="https://www.credly.com/users/filon51/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition underline underline-offset-2">Credly 认证徽章</a>
                             </div>
                         </div>
+						
+						<!-- PDF 预览操作按钮 -->
+                        <div class="mt-5">
+                            <button onclick="openPdfPreview()" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-primaryHover text-white text-xs font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 focus:outline-none">
+                                <i class="fa-solid fa-file-pdf"></i> 查看 PDF 简历版本
+                            </button>
+                        </div>
                     </div>
 
                     <!-- 顶级资质认证 (指定的6项证书及可路由图片链接) -->
@@ -415,6 +422,37 @@
             </div>
         </div>
     </main>
+	
+	<!-- PDF 预览弹窗浮窗层 (已移除保存到本地按钮) -->
+    <div id="pdf-preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 animate-fade-in">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-4xl h-[85vh] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden">
+            <!-- 弹窗顶部栏 -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-red-500 text-lg"></i>
+                    <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200">齐胜龙_高级系统架构设计师简历预览</h3>
+                </div>
+                <div class="flex items-center">
+                    <button onclick="closePdfPreview()" class="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1.5 rounded-full bg-slate-200/60 dark:bg-slate-700 w-8 h-8 flex items-center justify-center text-sm transition focus:outline-none" title="关闭">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- 弹窗内容区：嵌入PDF查看器对象或降级占位 -->
+            <div class="flex-grow bg-slate-100 dark:bg-slate-900 relative flex items-center justify-center overflow-hidden">
+                <object data="./assets/resume.pdf" type="application/pdf" class="w-full h-full">
+                    <div class="text-center p-8 max-w-md">
+                        <i class="fa-solid fa-file-lines text-5xl text-slate-400 mb-4"></i>
+                        <h4 class="text-base font-bold text-slate-700 dark:text-slate-300 mb-2">PDF 文档在线预览载入中</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">如果您的浏览器不支持内联PDF预览，或者PDF文件尚未放置到指定路径，您可以点击下方按钮直接前往查阅或下载。</p>
+                        <a href="./assets/resume.pdf" download="齐胜龙_高级系统架构设计师简历.pdf" class="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primaryHover text-white text-xs font-bold rounded-xl shadow transition">
+                            <i class="fa-solid fa-download"></i> 下载 PDF 简历
+                        </a>
+                    </div>
+                </object>
+            </div>
+        </div>
+    </div>
 
     <!-- 自定义交互逻辑 -->
     <script src="script.js"></script>

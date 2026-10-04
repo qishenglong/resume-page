@@ -1,7 +1,31 @@
 /* =========================================================
    script.js — 齐胜龙个人简历 交互逻辑
    ========================================================= */
-// 证书内联浮窗控制函数
+   
+   // PDF 预览浮窗控制函数
+        function openPdfPreview() {
+            const modal = document.getElementById('pdf-preview-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // 防止底层页面滚动
+        }
+
+        function closePdfPreview() {
+            const modal = document.getElementById('pdf-preview-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击背景遮罩关闭PDF预览
+        document.getElementById('pdf-preview-modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('pdf-preview-modal')) {
+                closePdfPreview();
+            }
+        });
+
+
+       // 证书内联浮窗控制函数
         function toggleCertPreview(certId, imgUrl, titleText) {
             const panel = document.getElementById('cert-floating-panel');
             const panelImg = document.getElementById('cert-panel-img');
